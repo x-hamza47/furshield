@@ -97,9 +97,13 @@ class AdoptionRequestController extends Controller
 
         if ($request->status === 'pending') {
             $request->update(['status' => 'approved']);
+
             AdoptionRequest::where('adoption_id', $request->adoption_id)
                 ->where('id', '!=', $request->id)
                 ->update(['status' => 'rejected']);
+
+            $adoption = $request->adoption;
+            $adoption->update(['status' => 'adopted']);
         }
 
         return redirect()->back()->with('success', 'Adoption request approved.');

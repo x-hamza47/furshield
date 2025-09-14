@@ -20,11 +20,15 @@ class Adoption extends Model
         'image'
     ];
 
+    // public function shelter()
+    // {
+    //     return $this->belongsTo(User::class, 'shelter_id');
+    // }
+
     public function shelter()
     {
-        return $this->belongsTo(User::class, 'shelter_id');
+        return $this->belongsTo(Shelter::class, 'shelter_id');
     }
-
     public function requests()
     {
         return $this->hasMany(AdoptionRequest::class);

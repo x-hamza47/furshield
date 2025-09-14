@@ -17,6 +17,7 @@ use App\Http\Controllers\AdoptionController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\HealthRecordController;
+use App\Http\Controllers\OwnerAdoptionController;
 use App\Http\Controllers\AdoptionRequestController;
 use App\Http\Controllers\PetOwnerAdoptionController;
 
@@ -47,6 +48,17 @@ Route::post('adoption-requests/{id}/approve', [AdoptionRequestController::class,
 Route::post('adoption-requests/{id}/reject', [AdoptionRequestController::class, 'reject'])->name('adoption-requests.reject');
 
 Route::get('adoption-requests/history', [AdoptionRequestController::class, 'history'])->name('adoption-requests.history');
+
+// List available pets
+Route::get('adoptions', [OwnerAdoptionController::class, 'index'])->name('adoptions.index');
+
+// Submit an adoption request
+Route::post('adoption-requests', [OwnerAdoptionController::class, 'store'])->name('adoption-requests.add');
+
+// View their own requests
+Route::get('adoption-requests/my', [OwnerAdoptionController::class, 'myRequests'])->name('adoption-requests.my');
+
+
 
 //! Zain Health Record
 Route::resource('dashboard/health-records', HealthRecordController::class);
@@ -97,3 +109,5 @@ Route::prefix('dashboard')->group(function () {
 Route::get('/', [PublicController::class, 'index'])->name('home');
 Route::get('/articles', [PublicController::class, 'article'])->name('articles');
 Route::get('/article/{id}', [PublicController::class, 'articleShow'])->name('article.show');
+
+

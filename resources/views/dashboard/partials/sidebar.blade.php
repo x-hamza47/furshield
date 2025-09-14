@@ -152,24 +152,24 @@
                     <div data-i18n=" Animal Shelters">Appointments </div>
                 </a>
             </li>
-            {{-- <li class="menu-item">
+            <li class="menu-item">
                 <a href="{{ route('adoptions.index') }}" class="menu-link">
                     <i class="menu-icon icon-base bx bxs-heart"></i>
                     <div data-i18n="Adoptions">Adoptions</div>
                 </a>
-            </li> --}}
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('adoption-requests.my') }}" class="menu-link">
+                    <i class="menu-icon icon-base bx bx-envelope"></i>
+                    <div data-i18n="My Requests">My Requests</div>
+                </a>
+            </li>
             <li class="menu-item {{ Route::is('shop.index') ? 'active' : '' }}">
                 <a href="{{ route('shop.index') }}" class="menu-link">
                     <i class="menu-icon icon-base bx bx-shopping-bag"></i>
                     <div data-i18n="Products">Products</div>
                 </a>
             </li>
-            {{-- <li class="menu-item">
-                <a href="{{ route('adoptions.request') }}" class="menu-link">
-                    <i class="menu-icon icon-base bx bx-envelope"></i>
-                    <div data-i18n="My Requests">My Requests</div>
-                </a>
-            </li> --}}
             {{-- Orders --}}
             <li class="menu-item">
                 <a href="{{ route('orders.index') }}" class="menu-link">

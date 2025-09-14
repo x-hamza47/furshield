@@ -100,19 +100,20 @@ class CartController extends Controller
 
         foreach ($order->items as $item) {
             $product = $item->product;
+
             if ($item->quantity > $product->stock_quantity) {
                 return redirect()->route('cart.index')
                     ->with('error', $product->name . ' does not have enough stock.');
             }
+
             // Reduce stock
             $product->stock_quantity -= $item->quantity;
             $product->save();
         }
 
-        // DO NOT mark as completed — leave it as 'pending'
-        // $order->status = 'completed';
-        // $order->save();
+        // Remove cart items so the user sees an empty cart
+        $order->items()->delete();
 
-        return redirect()->route('shop.index')->with('success', 'Order placed successfully!');
+        return redirect()->route('shop.index')->with('success', 'Order placed successfully! Wait for shelter confirmation.');
     }
 }

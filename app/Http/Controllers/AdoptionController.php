@@ -69,7 +69,7 @@ class AdoptionController extends Controller
         $adoption->status      = $request->status;
 
         if (Auth::user()->role === 'shelter') {
-            $adoption->shelter_id = Auth::user()->shelter->id;
+            $adoption->shelter_id = Auth::id();
         }
         
         if ($request->hasFile('adop_img')) {
